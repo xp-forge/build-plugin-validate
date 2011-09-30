@@ -13,6 +13,7 @@
   >
   </info>
   <configurations>
+    <conf name="default"/>
     <conf name="compile"/>
   </configurations>
   <publications>

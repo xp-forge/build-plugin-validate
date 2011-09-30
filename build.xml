@@ -6,7 +6,7 @@
     <include name="xml/**"/>
   </fileset>
 
-  <target name="xp.package.sources">
+  <target name="-package:xar:classes">
     <zip destfile="${build.target}/${ivy.module}-${ivy.new.revision}.zip">
       <zipfileset
        dir="${build.target}/classes"

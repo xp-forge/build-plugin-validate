@@ -27,12 +27,16 @@
   </target>
 
   <target name="-plugin:validate:xsl">
-    <apply
+    <pathconvert property="xslfiles" pathsep=" ">
+      <fileset refid="build.sources.fileset.xsl"/>
+    </pathconvert>
+
+    <exec
      executable="xmllint"
      failonerror="true"
     >
       <arg value="-noout"/>
-      <fileset refid="build.sources.fileset.xsl"/>
-    </apply>
+      <arg line="${xslfiles}"/>
+    </exec>
   </target>
 </project>
