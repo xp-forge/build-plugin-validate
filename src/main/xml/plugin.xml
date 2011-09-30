@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<project name="xp-build-plugin-validate" xmlns:select="antlib:org.apache.tools.ant.types.resources.selectors">
+  <target name="compile"/>
+  <target name="clean"/>
+  <target name="validate" depends="-plugin:validate:php, -plugin:validate:xsl"/>
+  <target name="prepare"/>
+  <target name="test"/>
+  <target name="integration-test"/>
+  <target name="pre-package"/>
+  <target name="package"/>
+  <target name="post-package"/>
+  <target name="verify"/>
+  <target name="install"/>
+  <target name="publish"/>
+
+  <target name="-plugin:validate:php">
+    <apply
+     executable="php"
+     failonerror="true"
+    >
+      <arg value="-l"/>
+      <restrict>
+        <fileset refid="build.sources.fileset.php"/>
+        <select:name name="*.php"/>
+      </restrict>
+    </apply>
+  </target>
+
+  <target name="-plugin:validate:xsl">
+    <apply
+     executable="xmllint"
+     failonerror="true"
+    >
+      <arg value="-noout"/>
+      <fileset refid="build.sources.fileset.xsl"/>
+    </apply>
+  </target>
+</project>
