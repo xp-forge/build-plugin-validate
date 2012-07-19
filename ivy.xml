@@ -9,7 +9,7 @@
    organisation="net.xp_framework.build"
    module="plugin-validate"
    status="integration"
-   revision="1.0.0"
+   revision="1.0.1"
   >
   </info>
   <configurations>
@@ -20,11 +20,5 @@
     <artifact name="plugin-validate" type="plugin" ext="zip" conf="compile"/>
   </publications>
   <dependencies>
-    <dependency
-     org="net.xp_framework"
-     name="core"
-     rev="latest.integration"
-     conf="*->default"
-    />
   </dependencies>
 </ivy-module>

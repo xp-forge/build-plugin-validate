@@ -2,10 +2,11 @@
 <project name="xp-build-plugin-validate" xmlns:select="antlib:org.apache.tools.ant.types.resources.selectors">
   <target name="compile"/>
   <target name="clean"/>
-  <target name="validate" depends="-plugin:validate:php, -plugin:validate:xsl"/>
+  <target name="validate"/>
   <target name="prepare"/>
   <target name="test"/>
   <target name="integration-test"/>
+  <target name="ci-metrics" depends="-plugin:validate:php, -plugin:validate:xsl"/>
   <target name="pre-package"/>
   <target name="package"/>
   <target name="post-package"/>
@@ -27,16 +28,26 @@
   </target>
 
   <target name="-plugin:validate:xsl">
-    <pathconvert property="xslfiles" pathsep=" ">
-      <fileset refid="build.sources.fileset.xsl"/>
-    </pathconvert>
-
-    <exec
+    <apply
      executable="xmllint"
      failonerror="true"
     >
-      <arg value="-noout"/>
-      <arg line="${xslfiles}"/>
-    </exec>
+      <arg value="--noout"/>
+      <restrict>
+        <fileset refid="build.sources.fileset.xsl"/>
+        <select:name name="*.xml"/>
+      </restrict>
+    </apply>
+
+    <apply
+     executable="xmllint"
+     failonerror="true"
+    >
+      <arg value="--noout"/>
+      <restrict>
+        <fileset refid="build.sources.fileset.xsl"/>
+        <select:name name="*.xsl"/>
+      </restrict>
+    </apply>
   </target>
 </project>
